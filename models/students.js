@@ -1,7 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
     var Students = sequelize.define("Students", {
       student_id: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        primarykey:true
+      
       },
       student_name: {
         type: DataTypes.STRING,
@@ -16,45 +18,26 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false
       },
-      par1_name: {
+      par_name: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      par1_addr: {
+      par_addr: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      par1_csz: {
+      par_csz: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      par1_gvt_id: {
+      par_gvt_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: { 
           min: 100000000,
           max: 999999999
         }
-      },
-      par2_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      par2_addr: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      par2_csz: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      par2_gvt_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: { 
-          min: 100000000,
-          max: 999999999
-        }
+       
       },
       reunify_pnt: {
         type: DataTypes.STRING,
@@ -74,15 +57,18 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    // Students.associate = function(models) {
-    //     // We're saying that a Post should belong to an Author
-    //     // A Post can't be created without an Author due to the foreign key constraint
-    //     Students.belongsTo(models.Parents, {
-    //       foreignKey:"par1_gvt_id",
-    //        allowNull: false
+    // Students.belongsTo(models.Checkin_parent,{
+
+    //     foreignKey:"par_govt_id"
+    // })
+    Students.associate = function(models) {
+      
+        // A Post can't be created without an Author due to the foreign key constraint
+        Students.belongsTo(models.Checkin_parent, {
+          foreignKey:"par_govt_id"
           
-    //     });
-    //   };
+        });
+      };
   
     return Students;
   };
