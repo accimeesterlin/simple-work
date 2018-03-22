@@ -4,10 +4,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        validate: { 
-          min: 100000000,
-          max: 999999999
-        }
+        // validate: { 
+        //   min: 000000000,
+        //   max: 999999999
+        // }
       },
       par_name: {
         type: DataTypes.STRING,
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     //     }
     //   },
       createdAt: DataTypes.DATE,
-        updatedAt: DataTypes.DATE 
+      updatedAt: DataTypes.DATE 
     });
     
     
